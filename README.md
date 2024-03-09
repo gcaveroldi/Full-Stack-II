@@ -1,1 +1,1 @@
-Elaboração de backend com controle d segurança de acesso.
+Elaboração de backend com controle de segurança de acesso.
