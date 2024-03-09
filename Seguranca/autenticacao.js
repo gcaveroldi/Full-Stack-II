@@ -1,7 +1,7 @@
 import { assinar, verificarAssinatura } from "./funcoesJWT.js";
 
 export function autenticar(usuario, senha){
-    const usuario = reqisicao.body.usuario;
+    const usuario = requisicao.body.usuario;
     const senha = requisicao.body.senha;
     if (usuario === 'admin' && senha === 'admin'){
         requisicao.session.usuarioAutenticado = usuario;
