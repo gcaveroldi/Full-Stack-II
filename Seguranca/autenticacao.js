@@ -1,4 +1,4 @@
-import { assinar, verificarAssinatura } from "./funcoesJWT.js";
+import { assinar, verificarAssinatura } from "../Seguranca/funcoesJWT.js";
 
 export function autenticar(requisicao, resposta){
     const usuario = requisicao.body.usuario;
