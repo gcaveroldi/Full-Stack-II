@@ -1,4 +1,4 @@
-import Tipo_TreinoBD from "../Persistencia/tipo_treinoBD.js";
+import tipo_treinoBD from "../Persistencia/tipo_treinoBD.js";
 
 export default class Tipo_Treino{
     #nome;
@@ -25,10 +25,10 @@ export default class Tipo_Treino{
         return this.#descricao;
     }
 
-    set tipo_treino(novoTtrein){
-        this.#descricao=novoTtrein;
+    
+    set tipo_treino(novoTreino){
+        this.#descricao=novoTreino;
     }
-
     
 
     toJSON(){
@@ -41,23 +41,23 @@ export default class Tipo_Treino{
 
      //camada de modelo acessa a camada de persistencia
      async gravar(){
-        const tipo_treinoBD = new tipo_treinoBD();
-        await tipo_treinoBD.gravar(this);
+        const Tipo_treinoBD = new tipo_treinoBD();
+        await Tipo_treinoBD.gravar(this);
      }
  
      async excluir(){
-        const tipo_treinoBD = new tipo_treinoBD();
-        await tipo_treinoBD.excluir(this);
+        const Tipo_treinoBD = new tipo_treinoBD();
+        await Tipo_treinoBD.excluir(this);
      }
  
      async alterar(){
-        const tipo_treinoBD = new tipo_treinoBD();
-        await tipo_treinoBD.atualizar(this);
+        const Tipo_treinoBD = new tipo_treinoBD();
+        await Tipo_treinoBD.atualizar(this);
      }
  
-     async consultar(termo){
-        const tipo_treinoBD = new tipo_treinoBD();
-        await tipo_treinoBD.consultar(this);;
+     async consultar(){
+        const Tipo_treinoBD = new tipo_treinoBD();
+        await Tipo_treinoBD.consultar(this);;
      }
 
 }

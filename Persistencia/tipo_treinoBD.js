@@ -2,13 +2,13 @@ import Tipo_Treino from "../Modelo/tipo_treino.js";
 import conectar from "./conexao.js";
 //BD = Banco de dados
 export default class Tipo_TreinoBD{
-    async gravar(tipo_treinotreino){
-        if (tipo_treinotreino instanceof Tipo_Treino){
+    async gravar(tipo_treino){
+        if (tipo_treino instanceof Tipo_Treino){
             const sql = "INSERT INTO tipo_treino(nome, descricao) VALUES(?,?)"; 
-            const parametros = [tipo_treinotreino.descricao];
+            const parametros = [tipo_treino.nome, tipo_treino.descricao];
             const conexao = await conectar(); //retorna uma conexão
             const retorno = await conexao.execute(sql,parametros); //prepara a sql e depois executa
-            tipo_treinotreino.codigo = retorno[0].insertId;
+            tipo_treino.codigo = retorno[0].insertId;
             global.poolConexoes.releaseConnection(conexao);
         }
     }
