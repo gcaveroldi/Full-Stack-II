@@ -5,7 +5,7 @@ import rotaTreino from './Rotas/rotaTreino.js';
 import rotaLogin from './Rotas/rotaLogin.js'
 import dotenv from 'dotenv';
 import session from 'express-session';
-import { verificarAcesso } from './Seguranca/autenticacao.js';
+import { verificarAcesso } from "../Seguranca/Autenticacao.js";
 
 const host='0.0.0.0';
 const porta='3006';

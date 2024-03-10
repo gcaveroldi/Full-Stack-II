@@ -1,6 +1,6 @@
 import { assinar, verificarAssinatura } from "./funcoesJWT.js";
 
-export function autenticar(usuario, senha){
+export function autenticar(requisicao, resposta){
     const usuario = requisicao.body.usuario;
     const senha = requisicao.body.senha;
     if (usuario === 'admin' && senha === 'admin'){
@@ -18,10 +18,14 @@ export function autenticar(usuario, senha){
         })
     }
 }
-export function verificarAcesso(reqisicao, resposta, next){
-    const token = reqisicao.headers['authorization'];
-    const tokenDecodificado = verificarAssinatura(token);
-    if (tokenDecodificado == reqisicao.session.usuarioAutenticado){
+export function verificarAcesso(requisicao, resposta, next){
+    const token = requisicao.headers['authorization'];
+    let tokenDecodificado = '';
+    if(token){
+       tokenDecodificado = verificarAssinatura(token);
+    }
+       
+    if (tokenDecodificado == requisicao.session.usuarioAutenticado){
         next();
 
     }
