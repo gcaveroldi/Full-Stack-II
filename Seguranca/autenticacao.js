@@ -25,7 +25,7 @@ export function verificarAcesso(requisicao, resposta, next){
        tokenDecodificado = verificarAssinatura(token);
     }
        
-    if (tokenDecodificado == requisicao.session.usuarioAutenticado){
+    if (tokenDecodificado.usuario.usuario == requisicao.session.usuarioAutenticado){
         next();
 
     }
