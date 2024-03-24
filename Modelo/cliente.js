@@ -1,73 +1,93 @@
 import ClienteBD from "../Persistencia/clienteBD.js";
 
-export default class Cliente{
-    #codigo;
+export default class Cliente {
+    #id;
     #nome;
-    #datanasc;
-    
+    #sobrenome;
+    #cidade;
+    #cep;
+    #id_treino;
 
-    constructor(codigo=null, nome=null, 
-                datanasc=null
-                ){
-        this.#codigo=codigo;
-        this.#nome=nome;
-        this.#datanasc=datanasc;
-        
+    constructor(id = null, nome = null, sobrenome = null, cidade = null, cep = null, id_treino = null) {
+        this.#id = id;
+        this.#nome = nome;
+        this.#sobrenome = sobrenome;
+        this.#cidade = cidade;
+        this.#cep = cep;
+        this.#id_treino = id_treino;
     }
 
-    get codigo(){
-        return this.#codigo;
+    get id() {
+        return this.#id;
     }
-    set codigo(novoCodigo){
-        this.#codigo = novoCodigo;
+    set id(novoId) {
+        this.#id = novoId;
     }
 
-    get nome(){
+    get nome() {
         return this.#nome;
     }
-
-    set nome(novoNom){
-        this.#nome=novoNom;
+    set nome(novoNome) {
+        this.#nome = novoNome;
     }
 
-    get datanasc(){
-        return this.#datanasc;
+    get sobrenome() {
+        return this.#sobrenome;
+    }
+    set sobrenome(novoSobrenome) {
+        this.#sobrenome = novoSobrenome;
     }
 
-    set datanasc(novaDat){
-        this.#datanasc = novaDat;
+    get cidade() {
+        return this.#cidade;
+    }
+    set cidade(novaCidade) {
+        this.#cidade = novaCidade;
     }
 
+    get cep() {
+        return this.#cep;
+    }
+    set cep(novoCep) {
+        this.#cep = novoCep;
+    }
 
+    get id_treino() {
+        return this.#id_treino;
+    }
+    set id_treino(novoIdTreino) {
+        this.#id_treino = novoIdTreino;
+    }
 
-    toJSON(){
+    toJSON() {
         return {
-            codigo:this.#codigo,
-            nome:this.#nome,
-            datanasc:this.#datanasc,
-            
-        }
+            id: this.#id,
+            nome: this.#nome,
+            sobrenome: this.#sobrenome,
+            cidade: this.#cidade,
+            cep: this.#cep,
+            id_treino: this.#id_treino
+        };
     }
 
-     //camada de modelo acessa a camada de persistencia
-     async gravar(){
+    // Camada de modelo acessa a camada de persistência
+    async gravar() {
         const clienteBD = new ClienteBD();
         await clienteBD.gravar(this);
-     }
- 
-     async excluir(){
+    }
+
+    async excluir() {
         const clienteBD = new ClienteBD();
         await clienteBD.excluir(this);
-     }
- 
-     async alterar(){
+    }
+
+    async alterar() {
         const clienteBD = new ClienteBD();
         await clienteBD.atualizar(this);
-     }
- 
-     async consultar(termo){
-        const clienteBD = new ClienteBD();
-        await clienteBD.consultar(this);;
-     }
+    }
 
+    async consultar(termo) {
+        const clienteBD = new ClienteBD();
+        await clienteBD.consultar(termo);
+    }
 }

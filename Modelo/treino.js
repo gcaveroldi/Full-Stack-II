@@ -1,63 +1,53 @@
 import TreinoBD from "../Persistencia/treinoBD.js";
 
-export default class Treino{
-    #treino;
-    #tipotreino;
-    
-    
+export default class Treino {
+    #codigo;
+    #categoria;
 
-    constructor(treino=0, tipotreino=0, 
-                
-                ){
-        this.#treino=treino;
-        this.#tipotreino=tipotreino;
-       
+    constructor(codigo = 0, categoria = "") {
+        this.#codigo = codigo;
+        this.#categoria = categoria;
     }
 
-    get treino(){
-        return this.#treino;
+    get codigo() {
+        return this.#codigo;
     }
-    set treino(novoTreino){
-        this.#treino = novoTreino;
-    }
-
-    get tipotreino(){
-        return this.#tipotreino;
+    set codigo(novoCodigo) {
+        this.#codigo = novoCodigo;
     }
 
-    set tipotreino(novoTtrein){
-        this.#tipotreino=novoTtrein;
+    get categoria() {
+        return this.#categoria;
+    }
+    set categoria(novaCategoria) {
+        this.#categoria = novaCategoria;
     }
 
-    
-
-    toJSON(){
+    toJSON() {
         return {
-            treino:this.#treino,
-            tipotreino:this.#tipotreino,
-                        
-        }
+            codigo: this.#codigo,
+            categoria: this.#categoria
+        };
     }
 
-     //camada de modelo acessa a camada de persistencia
-     async gravar(){
+    // Camada de modelo acessa a camada de persistência
+    async gravar() {
         const treinoBD = new TreinoBD();
         await treinoBD.gravar(this);
-     }
- 
-     async excluir(){
+    }
+
+    async excluir() {
         const treinoBD = new TreinoBD();
         await treinoBD.excluir(this);
-     }
- 
-     async alterar(){
+    }
+
+    async alterar() {
         const treinoBD = new TreinoBD();
         await treinoBD.atualizar(this);
-     }
- 
-     async consultar(termo){
-        const treinoBD = new TreinoBD();
-        await treinoBD.consultar(this);;
-     }
+    }
 
+    async consultar(termo) {
+        const treinoBD = new TreinoBD();
+        await treinoBD.consultar(termo);
+    }
 }

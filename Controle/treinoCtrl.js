@@ -6,10 +6,10 @@ export default class TreinoCtrl {
         resposta.type('application/json');
         if (requisicao.method === 'POST' && requisicao.is('application/json')) {
             const dados = requisicao.body;
-            const descricao = dados.descricao;
-            if (descricao) {
-                const treino = new Treino(0, descricao);
-                //resolver a promise
+            const categoria = dados.categoria;
+            if (categoria) {
+                const treino = new Treino(0, categoria);
+                // resolver a promise
                 treino.gravar().then(() => {
                     resposta.status(200).json({
                         "status": true,
@@ -20,14 +20,14 @@ export default class TreinoCtrl {
                     .catch((erro) => {
                         resposta.status(500).json({
                             "status": false,
-                            "mensagem": "Erro ao registrar o treino:" + erro.message
+                            "mensagem": "Erro ao registrar o treino: " + erro.message
                         });
                     });
             }
             else {
                 resposta.status(400).json({
                     "status": false,
-                    "mensagem": "Por favor, informe o treino do cliente!"
+                    "mensagem": "Por favor, informe a categoria do treino!"
                 });
             }
         }
@@ -44,10 +44,10 @@ export default class TreinoCtrl {
         if ((requisicao.method === 'PUT' || requisicao.method === 'PATCH') && requisicao.is('application/json')) {
             const dados = requisicao.body;
             const codigo = dados.codigo;
-            const descricao = dados.descricao;
-            if (codigo && descricao) {
-                const treino = new Treino(codigo, descricao);
-                //resolver a promise
+            const categoria = dados.categoria;
+            if (codigo && categoria) {
+                const treino = new Treino(codigo, categoria);
+                // resolver a promise
                 treino.atualizar().then(() => {
                     resposta.status(200).json({
                         "status": true,
@@ -57,14 +57,14 @@ export default class TreinoCtrl {
                     .catch((erro) => {
                         resposta.status(500).json({
                             "status": false,
-                            "mensagem": "Erro ao atualizar o treino" + erro.message
+                            "mensagem": "Erro ao atualizar o treino: " + erro.message
                         });
                     });
             }
             else {
                 resposta.status(400).json({
                     "status": false,
-                    "mensagem": "Por favor, informe o treino do cliente!"
+                    "mensagem": "Por favor, informe a categoria do treino!"
                 });
             }
         }
@@ -83,7 +83,7 @@ export default class TreinoCtrl {
             const codigo = dados.codigo;
             if (codigo) {
                 const treino = new Treino(codigo);
-                //resolver a promise
+                // resolver a promise
                 treino.excluir().then(() => {
                     resposta.status(200).json({
                         "status": true,
@@ -93,21 +93,21 @@ export default class TreinoCtrl {
                     .catch((erro) => {
                         resposta.status(500).json({
                             "status": false,
-                            "mensagem": "Erro ao excluir o treino:" + erro.message
+                            "mensagem": "Erro ao excluir o treino: " + erro.message
                         });
                     });
             }
             else {
                 resposta.status(400).json({
                     "status": false,
-                    "mensagem": "Por favor, informe o treino do cliente !"
+                    "mensagem": "Por favor, informe o código do treino!"
                 });
             }
         }
         else {
             resposta.status(400).json({
                 "status": false,
-                "mensagem": "Por favor, utilize o método DELETE para excluir um cliente e o treino!"
+                "mensagem": "Por favor, utilize o método DELETE para excluir um treino!"
             });
         }
     }
@@ -115,8 +115,8 @@ export default class TreinoCtrl {
 
     consultar(requisicao, resposta) {
         resposta.type('application/json');
-        //express, por meio do controle de rotas, será
-        //preparado para esperar um termo de busca
+        // express, por meio do controle de rotas, será
+        // preparado para esperar um termo de busca
         let termo = requisicao.params.termo;
         if (!termo){
             termo = "";
@@ -143,7 +143,7 @@ export default class TreinoCtrl {
         {
             resposta.status(400).json({
                 "status": false,
-                "mensagem": "Por favor, utilize o método GET para consultar clientes e treinos!"
+                "mensagem": "Por favor, utilize o método GET para consultar treinos!"
             });
         }
     }
