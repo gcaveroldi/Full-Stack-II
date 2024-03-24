@@ -1,18 +1,26 @@
-CREATE DATABASE atvI-2024;
 
-USE atvI-2024;
 
 CREATE TABLE treino(
-    cat_treino INT NOT NULL AUTO_INCREMENT,
-    cat_tipotreino VARCHAR(100) NOT NULL,
-    CONSTRAINT pk_treino PRIMARY KEY(cat_treino)
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    categoria VARCHAR(50) NOT NULL,
 );
 
 CREATE TABLE cliente(
-    cliente_codigo INT NOT NULL AUTO_INCREMENT,
-    cliente_nome VARCHAR(100) NOT NULL,
-    cliente_datanasc DATE,
-    cat_treino INT NOT NULL,
-    CONSTRAINT fk_cat_treino FOREIGN KEY (cat_treino) REFERENCES treino(cat_treino),
-    CONSTRAINT pk_cliente PRIMARY KEY(cliente_codigo)
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    sobrenome VARCHAR(100) NOT NULL,
+    cidade VARCHAR(100) NOT NULL,
+    cep VARCHAR(10) NOT NULL,
+    id_treino INT,
+    FOREIGN KEY (id_treino) REFERENCES treino(codigo) 
+   
 );
+
+    CREATE TABLE cliente_treino (
+    id_cliente_treino INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT,
+    id_treino INT,
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id),
+    FOREIGN KEY (id_treino) REFERENCES treino(codigo)
+);
+
