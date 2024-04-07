@@ -2,7 +2,7 @@
 
 CREATE TABLE treino(
     codigo INT AUTO_INCREMENT PRIMARY KEY,
-    categoria VARCHAR(50) NOT NULL,
+    categoria VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE cliente(

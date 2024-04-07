@@ -7,8 +7,7 @@ import dotenv from 'dotenv';
 import session from 'express-session';
 import { verificarAcesso } from "./Seguranca/Autenticacao.js";
 
-const host='0.0.0.0';
-const porta='4000';
+const porta='3306';
 
 dotenv.config();
 
@@ -22,14 +21,14 @@ app.use(session({
     secret: process.env.SEGREDO,
     resave: false,
     saveUninitialized: true,
-    maxAge: 1000 * 60 * 6
+    maxAge: 1000 * 60 * 100
 
 }))
 
-app.use('/login', rotaLogin)
-app.use('/cliente',verificarAcesso,rotaCliente);
-app.use('/treino',verificarAcesso,rotaTreino);
+/*app.use('/login', rotaLogin)*/
+app.use('/cliente',/*verificarAcesso,*/rotaCliente);
+app.use('/treino',/*verificarAcesso,*/rotaTreino);
 
-app.listen(porta, host, ()=>{
-    console.log(`Servidor escutando na porta ${host}:${porta}.`);
+app.listen(porta, 'localhost', ()=>{
+    console.log(`Servidor escutando na porta http://localhost:${porta}`);
 })
